@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Firm Strategies Affect Consumer Biases in Online Reviews</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #111;
+            background: #f5f7fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .wrap {
+            padding: 1rem 0;
+        }
+
+        .divider {
+            border: none;
+            border-top: 0.5px solid #e5e7eb;
+            margin: 1.75rem 0;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: .06em;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .sub {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 14px;
+        }
+
+        h1 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 6px;
+        }
+
+        .publication {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .publication a {
+            color: #185FA5;
+            text-decoration: none;
+        }
+
+        .publication a:hover {
+            text-decoration: underline;
+        }
+
+        .mg4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 1.25rem;
+        }
+
+        .mg3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 1.25rem;
+        }
+
+        .mg2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 1.25rem;
+        }
+
+        .mc {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 12px 14px;
+        }
+
+        .mc-label {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .mc-val {
+            font-size: 22px;
+            font-weight: 500;
+            color: #111;
+        }
+
+        .mc-sub {
+            font-size: 11px;
+            margin-top: 3px;
+            color: #666;
+        }
+
+        .mc-up {
+            color: #3B6D11;
+        }
+
+        .card {
+            background: white;
+            border: 0.5px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 12px;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 500;
+            padding: 2px 8px;
+            border-radius: 99px;
+        }
+
+        .b-blue {
+            background: #E6F1FB;
+            color: #0C447C;
+        }
+
+        .b-green {
+            background: #EAF3DE;
+            color: #3B6D11;
+        }
+
+        .b-amber {
+            background: #FAEEDA;
+            color: #854F0B;
+        }
+
+        .b-red {
+            background: #FCEBEB;
+            color: #A32D2D;
+        }
+
+        .b-gray {
+            background: #f8f9fa;
+            color: #666;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 1.25rem;
+        }
+
+        .method-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 14px;
+            border: 0.5px solid #e5e7eb;
+        }
+
+        .method-card h4 {
+            font-size: 13px;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .method-card p {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .method-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .method-card .sub {
+            font-size: 10px;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin: 1rem 0;
+        }
+
+        th {
+            background: #f8f9fa;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 11px;
+            color: #666;
+            border-bottom: 0.5px solid #e5e7eb;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 0.5px solid #e5e7eb;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .rating-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .rating-positive {
+            background: #EAF3DE;
+            color: #3B6D11;
+        }
+
+        .rating-baseline {
+            background: #f8f9fa;
+            color: #666;
+        }
+
+        .finding-card {
+            border-left: 3px solid #185FA5;
+            border-radius: 0 8px 8px 0;
+            background: #f8f9fa;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+        }
+
+        .finding-card.green {
+            border-left-color: #3B6D11;
+        }
+
+        .finding-card.amber {
+            border-left-color: #854F0B;
+        }
+
+        .finding-tag {
+            font-size: 10px;
+            font-weight: 500;
+            padding: 1px 7px;
+            border-radius: 99px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .tag-blue {
+            background: #E6F1FB;
+            color: #0C447C;
+        }
+
+        .tag-green {
+            background: #EAF3DE;
+            color: #3B6D11;
+        }
+
+        .tag-amber {
+            background: #FAEEDA;
+            color: #854F0B;
+        }
+
+        .finding-text {
+            font-size: 12px;
+            color: #111;
+            line-height: 1.5;
+        }
+
+        .highlight-box {
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 12px;
+            border-left: 3px solid #185FA5;
+            margin: 1rem 0;
+        }
+
+        .highlight-box h3 {
+            font-size: 13px;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .highlight-box p {
+            font-size: 12px;
+            color: #111;
+            line-height: 1.5;
+        }
+
+        .highlight-box ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .highlight-box li {
+            font-size: 12px;
+            color: #111;
+            line-height: 1.5;
+            margin-bottom: 4px;
+        }
+
+        .key-insight {
+            background: #FAEEDA;
+            padding: 16px;
+            border-radius: 12px;
+            border-left: 3px solid #854F0B;
+            margin: 1rem 0;
+        }
+
+        .key-insight h4 {
+            font-size: 13px;
+            font-weight: 500;
+            color: #854F0B;
+            margin-bottom: 8px;
+        }
+
+        .key-insight p {
+            font-size: 12px;
+            color: #111;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .mg4, .mg3, .mg2, .method-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="wrap">
+            <div style="margin-bottom: 1.5rem;">
+                <h1>How Firm Strategies Affect Consumer Biases in Online Reviews</h1>
+                <div class="publication">
+                    Published in 
+                    <a href="https://pubsonline.informs.org/doi/10.1287/serv.2023.0316" target="_blank">Service Science</a>, February 2023
+                    <br>
+                    Cornell University, SC Johnson College of Business
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Research Question -->
+            <div class="section-label">Research Question</div>
+            <div class="sub">Understanding how review collection strategies create systematic biases</div>
+            <div class="highlight-box">
+                <p><strong>How do different review-collection strategies employed by hospitality firms affect the characteristics and biases of online reviews?</strong></p>
+                <p style="margin-top: 10px;">Specifically, this study investigates how collection methods impact review ratings, length, polarity, and positivity across major hospitality brands and platforms.</p>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Data Sample -->
+            <div class="section-label">Experimental Sample Summary</div>
+            <div class="sub">Large-scale observational study across major U.S. hotel chains</div>
+
+            <div class="mg4">
+                <div class="mc">
+                    <div class="mc-label">Total Reviews</div>
+                    <div class="mc-val">383,037</div>
+                    <div class="mc-sub">2013–2019 period</div>
+                </div>
+
+                <div class="mc">
+                    <div class="mc-label">U.S. Hotels</div>
+                    <div class="mc-val">363</div>
+                    <div class="mc-sub">Random sample</div>
+                </div>
+
+                <div class="mc">
+                    <div class="mc-label">Major Brands</div>
+                    <div class="mc-val">4</div>
+                    <div class="mc-sub">Marriott, Hilton, Choice, Wyndham</div>
+                </div>
+
+                <div class="mc">
+                    <div class="mc-label">Chain Scales</div>
+                    <div class="mc-val">All</div>
+                    <div class="mc-sub">Upper upscale → Economy</div>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Four Collection Methods -->
+            <div class="section-label">Four Review Collection Methods — Different Strategies, Different Outcomes</div>
+            
+            <div class="method-grid">
+                <div class="method-card">
+                    <h4>Brand Website</h4>
+                    <p>Email survey → Post to hotel's official website</p>
+                    <div class="method-tags">
+                        <span class="badge b-blue">Email</span>
+                        <span class="badge b-blue">Survey</span>
+                        <span class="badge b-gray">No Login</span>
+                        <span class="badge b-blue">Details Req.</span>
+                    </div>
+                    <div class="sub">Used by: Marriott, Choice</div>
+                </div>
+
+                <div class="method-card">
+                    <h4>OTA (Expedia)</h4>
+                    <p>Email → Quick rating → Expedia.com</p>
+                    <div class="method-tags">
+                        <span class="badge b-blue">Email</span>
+                        <span class="badge b-gray">No Survey</span>
+                        <span class="badge b-gray">No Login</span>
+                        <span class="badge b-red">No Min. Length</span>
+                    </div>
+                    <div class="sub">Used by: All brands</div>
+                </div>
+
+                <div class="method-card">
+                    <h4>TA Review Express</h4>
+                    <p>Email/Survey → Post to TripAdvisor</p>
+                    <div class="method-tags">
+                        <span class="badge b-blue">Email</span>
+                        <span class="badge b-gray">Survey (opt)</span>
+                        <span class="badge b-amber">Login</span>
+                        <span class="badge b-blue">Details Req.</span>
+                    </div>
+                    <div class="sub">Used by: Hilton, Wyndham</div>
+                </div>
+
+                <div class="method-card">
+                    <h4>TA Self-Motivated</h4>
+                    <p>Consumer voluntarily posts on TripAdvisor</p>
+                    <div class="method-tags">
+                        <span class="badge b-red">No Email</span>
+                        <span class="badge b-gray">No Survey</span>
+                        <span class="badge b-amber">Login</span>
+                        <span class="badge b-blue">Details Req.</span>
+                    </div>
+                    <div class="sub">Available: All hotels</div>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Key Findings -->
+            <div class="section-label">Key findings at a glance</div>
+            <div class="mg4">
+                <div class="mc">
+                    <div class="mc-label">Rating lift (Brand vs. TA-SM)</div>
+                    <div class="mc-val mc-up">+0.42</div>
+                    <div class="mc-sub">Highest rating difference</div>
+                </div>
+                <div class="mc">
+                    <div class="mc-label">Empty Expedia reviews</div>
+                    <div class="mc-val">43.6%</div>
+                    <div class="mc-sub">Rating only, no text</div>
+                </div>
+                <div class="mc">
+                    <div class="mc-label">TA-SM review length</div>
+                    <div class="mc-val mc-up">112</div>
+                    <div class="mc-sub">words (median: 80)</div>
+                </div>
+                <div class="mc">
+                    <div class="mc-label">Statistical significance</div>
+                    <div class="mc-val mc-up">p<0.001</div>
+                    <div class="mc-sub">All collection effects</div>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Rating Differences -->
+            <div class="section-label">Rating Differences by Collection Method</div>
+            <div class="sub">Same hotels, different collection strategies produce systematically different ratings</div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Collection Method</th>
+                        <th>Mean Rating</th>
+                        <th>Median Rating</th>
+                        <th>vs. TA-SM</th>
+                        <th>Mean Length (words)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Brand Website</strong></td>
+                        <td>4.28</td>
+                        <td>5</td>
+                        <td><span class="rating-badge rating-positive">+0.42 (highest)</span></td>
+                        <td>34</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TA Review Express</strong></td>
+                        <td>4.09</td>
+                        <td>5</td>
+                        <td><span class="rating-badge rating-positive">+0.23</span></td>
+                        <td>64</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OTA (Expedia)</strong></td>
+                        <td>4.01</td>
+                        <td>4</td>
+                        <td><span class="rating-badge rating-positive">+0.15</span></td>
+                        <td>39</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TA Self-Motivated</strong></td>
+                        <td>3.86</td>
+                        <td>4</td>
+                        <td><span class="rating-badge rating-baseline">Baseline</span></td>
+                        <td>112 (longest)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="key-insight">
+                <h4>💡 Statistical Significance</h4>
+                <p>Random effects models controlling for hotel heterogeneity and temporal factors confirm that collection method significantly impacts ratings (p < 0.001). The Brand method yields approximately <strong>0.2-0.4 points higher</strong> ratings compared to self-motivated reviews, while OTA yields roughly <strong>0.1-0.15 points higher</strong>.</p>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Review Characteristics -->
+            <div class="section-label">Review Characteristics Comparison</div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Brand</th>
+                        <th>OTA</th>
+                        <th>TA-RE</th>
+                        <th>TA-SM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Polarity</strong> (% ratings 1 or 5)</td>
+                        <td>68%</td>
+                        <td>49%</td>
+                        <td>58%</td>
+                        <td>44%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Positivity</strong> (% ratings 4 or 5)</td>
+                        <td>82%</td>
+                        <td>74%</td>
+                        <td>74%</td>
+                        <td>69%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Median Length</strong> (words)</td>
+                        <td>22</td>
+                        <td>25</td>
+                        <td>50</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Empty Reviews</strong> (%)</td>
+                        <td>~5%</td>
+                        <td>43.6%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr class="divider">
+
+            <!-- Major Findings -->
+            <div class="section-label">Major Research Findings</div>
+            
+            <div class="card">
+                <div class="finding-card">
+                    <div class="finding-tag tag-blue">Self-motivated reviews</div>
+                    <div class="finding-text"><strong>Lowest rated but longest:</strong> TA-SM reviews have the lowest average rating (3.86) but provide the most detailed feedback with a median length of 80 words, suggesting more critical and engaged reviewers.</div>
+                </div>
+
+                <div class="finding-card green">
+                    <div class="finding-tag tag-green">Email solicitation effect</div>
+                    <div class="finding-text"><strong>Increases ratings significantly:</strong> All email-prompted methods (Brand, OTA, TA-RE) generate higher ratings than self-motivated reviews, with differences of 0.15 to 0.42 points—statistically and practically significant.</div>
+                </div>
+
+                <div class="finding-card">
+                    <div class="finding-tag tag-blue">Brand collection paradox</div>
+                    <div class="finding-text"><strong>Highest ratings, shortest reviews:</strong> Brand website reviews have the highest mean rating (4.28) but shortest median length (22 words), potentially due to survey fatigue and pre-existing brand loyalty among direct bookers.</div>
+                </div>
+
+                <div class="finding-card amber">
+                    <div class="finding-tag tag-amber">Expedia minimal effort</div>
+                    <div class="finding-text"><strong>44% contain no text:</strong> Nearly half of Expedia reviews are rating-only with no written feedback, creating potential credibility concerns despite high numeric scores.</div>
+                </div>
+
+                <div class="finding-card green">
+                    <div class="finding-tag tag-green">Review Express balance</div>
+                    <div class="finding-text"><strong>Volume + detail:</strong> TA-RE reviews achieve higher ratings than TA-SM while maintaining moderate length (64 words), potentially reducing nonresponse bias.</div>
+                </div>
+
+                <div class="finding-card">
+                    <div class="finding-tag tag-blue">Platform requirements matter</div>
+                    <div class="finding-text"><strong>Character minimums work:</strong> TripAdvisor's 200-character minimum requirement results in substantially longer, more informative reviews compared to platforms with no minimum (OTA) or limited requirements (Brand).</div>
+                </div>
+            </div>
+
+            <div class="key-insight">
+                <h4>🎯 Practical Implication</h4>
+                <p>A 0.2-point rating increase (e.g., from 3.9 to 4.1) can lead to <strong>significant increases in customer traffic and revenue</strong>. For context, previous research shows a half-star improvement on Yelp can increase restaurant reservations by 30-49% during peak hours.</p>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Managerial Implications -->
+            <div class="section-label">Strategic Recommendations for Hospitality Firms</div>
+
+            <div class="card">
+                <div class="card-title">When to use each collection method</div>
+                
+                <div class="finding-card green">
+                    <div class="finding-tag tag-green">Brand Website</div>
+                    <div class="finding-text"><strong>For higher ratings:</strong> Use when you need to boost overall scores and have loyal direct bookers. Trade-off: shorter reviews may reduce credibility. Best for: protecting brand image, building internal community.</div>
+                </div>
+
+                <div class="finding-card">
+                    <div class="finding-tag tag-blue">TripAdvisor Review Express</div>
+                    <div class="finding-text"><strong>For volume + credibility:</strong> Leverages third-party platform trust while generating higher ratings than organic TA reviews. Best for: building TripAdvisor presence, benefiting from herd behavior.</div>
+                </div>
+
+                <div class="finding-card amber">
+                    <div class="finding-tag tag-amber">OTA (Expedia)</div>
+                    <div class="finding-text"><strong>For volume, not depth:</strong> Easy submission drives high volume but 44% have no text. Best for: quickly accumulating reviews, platforms where volume matters more than detail.</div>
+                </div>
+
+                <div class="finding-card">
+                    <div class="finding-tag tag-blue">Self-Motivated (Organic)</div>
+                    <div class="finding-text"><strong>For authentic detail:</strong> Can't be controlled but provides longest, most detailed feedback. Best for: understanding true guest sentiment, getting rich qualitative data.</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Optimize Survey Design</h3>
+                <p>For brands using GSS + review collection:</p>
+                <ul>
+                    <li><strong>Segment customers:</strong> Send private survey to one group, public review invitation to another (avoid survey fatigue)</li>
+                    <li><strong>Set minimum word counts:</strong> Balance between requiring detail and avoiding abandonment</li>
+                    <li><strong>Reduce survey length:</strong> Shorter surveys before review requests increase review quality</li>
+                </ul>
+            </div>
+
+            <div class="key-insight">
+                <h4>⚠️ Trade-offs to Consider</h4>
+                <p><strong>Higher ratings vs. Review depth:</strong> Methods that generate highest ratings (Brand, OTA) produce shortest reviews with least information for future consumers</p>
+                <p><strong>Volume vs. Quality:</strong> Making reviews easier (OTA approach) increases volume but 44% have no text</p>
+                <p><strong>Control vs. Credibility:</strong> Hosting reviews on brand sites provides control but may reduce consumer trust</p>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Methodology -->
+            <div class="section-label">Methodology</div>
+            <div class="sub">Random effects panel models with hotel-level controls</div>
+
+            <div class="highlight-box">
+                <h3>Primary Model</h3>
+                <p><strong>Random effects linear regression controlling for:</strong></p>
+                <ul>
+                    <li>Hotel-level heterogeneity (random effects)</li>
+                    <li>Brand fixed effects</li>
+                    <li>Chain scale fixed effects</li>
+                    <li>Temporal factors (year and month fixed effects)</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Robustness Checks:</strong> Hausman test (favored random effects), Breusch-Pagan LM test, Lagrange multiplier tests, fixed effects models, ordered probit models—all confirmed main findings.</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

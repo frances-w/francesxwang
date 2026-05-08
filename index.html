@@ -1,9 +1,156 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Frances Wang Portfolio</title>
+  <title>Frances Wang</title>
 
   <style>
+
+        /* TIMELINE STYLES */
+    .timeline-container {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 60px 20px 20px 20px;
+      margin: 0 auto;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 80px;
+      left: 20px;
+      right: 20px;
+      height: 3px;
+      background: linear-gradient(to right, #cbd5e1, #64748b, #cbd5e1);
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      flex: 1;
+      text-align: center;
+      max-width: 140px;
+    }
+
+    .timeline-dot {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border: 3px solid #64748b;
+      border-radius: 50%;
+      margin: 0 auto 12px auto;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+
+    .timeline-item.highlight .timeline-dot {
+      width: 20px;
+      height: 20px;
+      border-color: #3730a3;
+      background: #eef2ff;
+      box-shadow: 0 0 0 4px rgba(55, 48, 163, 0.1);
+    }
+
+    .timeline-item.phd .timeline-dot {
+      width: 20px;
+      height: 20px;
+      border-color: #dc2626;
+      background: #fef2f2;
+      box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
+    }
+
+    .timeline-item:hover .timeline-dot {
+      transform: scale(1.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .timeline-year {
+      font-size: 12px;
+      font-weight: 600;
+      color: #3730a3;
+      margin-bottom: 4px;
+    }
+
+    .timeline-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: #374151;
+      line-height: 1.3;
+      min-height: 30px;
+    }
+
+    .timeline-popup {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 16px;
+      min-width: 280px;
+      max-width: 320px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    .timeline-item:hover .timeline-popup {
+      opacity: 1;
+      visibility: visible;
+      top: -30px;
+    }
+
+    .popup-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 6px;
+    }
+
+    .popup-company {
+      font-size: 13px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 4px;
+    }
+
+    .popup-location {
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+
+    .popup-details {
+      font-size: 11px;
+      color: #555;
+      line-height: 1.6;
+      border-top: 1px solid #f3f4f6;
+      padding-top: 10px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .timeline-item {
+        max-width: 100px;
+      }
+
+      .timeline-line {
+        display: none;
+      }
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       margin: 0;
@@ -176,6 +323,128 @@
 
   </div>  
 
+  <!-- TIMELINE SECTION -->
+<div class="section" style="margin-top: 40px; margin-bottom: 40px;">
+  <div class="section-title">Experience Timeline</div>
+  <div class="timeline-container">
+    <div class="timeline-line"></div>
+    
+    <div class="timeline-item highlight">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2015</div>
+      <div class="timeline-label">Hotel Rotational Intern</div>
+      <div class="timeline-popup">
+        <div class="popup-title">Rotational Hotel Intern</div>
+        <div class="popup-company">Yanhanshan Hotel</div>
+        <div class="popup-location">Shenzhen, China</div>
+        <div class="popup-details">Rooms, Banquet & Events Operations (6 months)</div>
+      </div>
+    </div>
+
+    <div class="timeline-item highlight">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2016</div>
+      <div class="timeline-label">Front of House</div>
+      <div class="timeline-popup">
+        <div class="popup-title">Front of House Worker</div>
+        <div class="popup-company">Aramark, UNLV Dining Hall</div>
+        <div class="popup-location">Las Vegas, NV</div>
+        <div class="popup-details">Server & Busser (Part-time)</div>
+      </div>
+    </div>
+
+    <div class="timeline-item highlight">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2017</div>
+      <div class="timeline-label">Sales Associate</div>
+      <div class="timeline-popup">
+        <div class="popup-title">Sales Associate</div>
+        <div class="popup-company">Swatch</div>
+        <div class="popup-location">Las Vegas, NV</div>
+        <div class="popup-details">Retail Sales (Part-time)</div>
+      </div>
+    </div>
+
+    <div class="timeline-item highlight">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2018</div>
+      <div class="timeline-label">Research Intern</div>
+      <div class="timeline-popup">
+        <div class="popup-title"> Marketing Research Intern</div>
+        <div class="popup-company">Richtech Robotics</div>
+        <div class="popup-location">Las Vegas, NV</div>
+        <div class="popup-details">Market Research & Google Analytics (Internship)</div>
+      </div>
+    </div>
+
+    <div class="timeline-item highlight">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2018</div>
+      <div class="timeline-label">VIP Marketing</div>
+      <div class="timeline-popup">
+        <div class="popup-title">VIP Marketing Ambassador</div>
+        <div class="popup-company">Caesars Entertainment</div>
+        <div class="popup-location">Las Vegas, NV</div>
+        <div class="popup-details">VIP Customer Engagement & Marketing (Part-time)</div>
+      </div>
+    </div>
+
+
+
+    <div class="timeline-item highlight">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2019</div>
+      <div class="timeline-label">Marketing Manager</div>
+      <div class="timeline-popup">
+        <div class="popup-title">Assistant Marketing Manager</div>
+        <div class="popup-company">Utour Travel</div>
+        <div class="popup-location">Las Vegas, NV</div>
+        <div class="popup-details"> Customer Analytics & Distribution Channel (Full-time)</div>
+      </div>
+    </div>
+
+    <div class="timeline-item highlight">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2019–2021</div>
+      <div class="timeline-label">Cornell TA/RA</div>
+      <div class="timeline-popup">
+        <div class="popup-title">Teaching & Research Assistant</div>
+        <div class="popup-company">Cornell University</div>
+        <div class="popup-location">Ithaca, NY</div>
+        <div class="popup-details">
+          <strong>Teaching:</strong> Marketing Management for Services (MMH), Data-Driven Marketing (MBA)<br><br>
+          <strong>Research:</strong> Minimum Wage Labor Scheduling, Online Review Collection Strategy
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item highlight">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2021–2025</div>
+      <div class="timeline-label">PhD Researcher</div>
+      <div class="timeline-popup">
+        <div class="popup-title">Graduate Researcher & Project Lead</div>
+        <div class="popup-company">Cornell University (PhD Fellowship)</div>
+        <div class="popup-location">Ithaca, NY</div>
+        <div class="popup-details">
+          <strong>Project Lead:</strong> Google Hotel Finder Optimization, Airbnb Policy Impact, Airbnb-Hotel Competition<br><br>
+          <strong>Project Member:</strong> Best Western Portfolio Performance Analysis
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+  <div class="section">
+    <div class="section-title">Research Dashboards (selected projects where I served as project lead and first author) </div>
+
+    <div class="subtitle" style="margin-top: 18px;">
+      Causal Inference · Text Mining · Hospitality & Platform Data Analytics
+    </div>
+  </div>
+<!-- 
   <div class="header">
     <h1>Research Dashboards</h1>
     <div class="subtitle">
@@ -183,25 +452,37 @@
       <br><br>
       These research dashboards showcase selected projects where I served as <strong>project lead and first author</strong>, translating rigorous empirical methods into actionable insights for platform and service markets.
     </div>
-  </div>
+  </div> -->
 
   <div class="two-col">
 
     <div class="card" onclick="location.href='ghf.html'">
       <div class="title">Google Hotel Finder Optimization</div>
       <div class="desc">
-        Experimental analysis of free vs paid listings with booking simulator and ROI model
+        <!-- Experimental analysis of free vs paid listings with booking simulator and ROI model -->
+        Field experiment across 26 experimental hotels with Google Analytics data from 1,400+ control hotels to optimize Google Hotel Finder participation using booking simulator and ROI modeling
       </div>
       <div>
         <span class="tag">Experiment</span>
-        <span class="tag">Pricing</span>
+        <span class="tag">Advertising</span>
+      </div>
+    </div>
+
+    <div class="card" onclick="location.href='review_collection_dashboard.html'">
+      <div class="title">Review Collection Strategy </div>
+      <div class="desc">
+        Observation study across 383,037 hotel reviews (2013–2019) from 363 U.S. hotels across four brands: Marriott, Hilton, Choice, and Wyndham
+      </div>
+      <div>
+        <span class="tag">Rating Behavior</span>
+        <span class="tag">Collection Bias</span>
       </div>
     </div>
 
     <div class="card" onclick="location.href='str-hotel.html'">
       <div class="title">Airbnb vs Hotels — Causal Impact</div>
       <div class="desc">
-        IV + DiD model measuring substitution effects and market competition dynamics
+        IV + DiD causal model measuring substitution effects and market competition dynamics
       </div>
       <div>
         <span class="tag">Causal</span>
@@ -212,22 +493,11 @@
     <div class="card" onclick="location.href='str-policy.html'">
       <div class="title">Impact of Airbnb Regulation</div>
       <div class="desc">
-        Supply shock analysis with entry/exit dynamics and policy implications
+        DiD + Event Study Model on supply shock analysis with entry/exit dynamics and policy implications
       </div>
       <div>
         <span class="tag">Policy</span>
         <span class="tag">Supply</span>
-      </div>
-    </div>
-
-    <div class="card" onclick="location.href='review-bias-dashboard.html'">
-      <div class="title">Review Collection Strategy Bias</div>
-      <div class="desc">
-        How review prompts vs organic behavior distort ratings and sentiment
-      </div>
-      <div>
-        <span class="tag">Behavior</span>
-        <span class="tag">Systematic Bias</span>
       </div>
     </div>
 
